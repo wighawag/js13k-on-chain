@@ -12,12 +12,52 @@ contract JS24K {
 
 	mapping(uint256 => address) public ownerOf;
 
-	function mint(bytes calldata gameData) external {
+	event Debug(bytes data, bytes gameData);
+
+	function debug(bytes calldata gameData) external {
 		bytes memory deployCode = bytes.concat(hex"61FFFF600E60003961FFFF6000F3", gameData);
-		deployCode[1] = gameData.length >> 8;
-		deployCode[9] = gameData.length >> 8;
-		deployCode[2] = gameData.length % FF;
-		deployCode[10] = gameData.length % FF;
+		bytes1 lenByte1 = bytes1(uint8(gameData.length >> 8));
+		bytes1 lenByte2 = bytes1(uint8(gameData.length & 0xFF));
+		deployCode[1] = lenByte1;
+		deployCode[9] = lenByte1;
+		deployCode[2] = lenByte2;
+		deployCode[10] = lenByte2;
+
+		emit Debug(deployCode, gameData);
+	}
+
+	// function mint(bytes calldata gameData) external {
+	// 	// bytes memory deployCode = bytes.concat(hex"61FFFF600E60003961FFFF6000F3", gameData);
+	// 	// bytes1 lenByte1 = bytes1(uint8(gameData.length >> 8));
+	// 	// bytes1 lenByte2 = bytes1(uint8(gameData.length & 0xFF));
+	// 	// deployCode[1] = lenByte1;
+	// 	// deployCode[9] = lenByte1;
+	// 	// deployCode[2] = lenByte2;
+	// 	// deployCode[10] = lenByte2;
+
+	// 	// bytes memory deployCode = bytes.concat(hex"615870600E6000396158706000F3", hex"FFFFFF");
+	// 	bytes memory deployCode = hex"610003600E6000396100036000F3FFFFFF";
+
+	// 	uint256 newContract;
+	// 	assembly {
+	// 		newContract := create(0, add(deployCode, 32), 34)
+	// 	}
+	// 	ownerOf[newContract] = msg.sender;
+	// 	emit Transfer(address(0), msg.sender, newContract);
+	// }
+
+	function mint(bytes calldata gameData) external {
+		uint256 newContract;
+		assembly {
+			let len := sub(calldatasize(), 36)
+			calldatacopy(128, 36, len)
+			newContract := create(0, 128, len)
+		}
+		ownerOf[newContract] = msg.sender;
+		emit Transfer(address(0), msg.sender, newContract);
+	}
+
+	function mintRaw(bytes memory deployCode) external {
 		uint256 newContract;
 		assembly {
 			newContract := create(0, add(deployCode, 32), mload(deployCode))
