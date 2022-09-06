@@ -52,6 +52,11 @@
 			<p>
 				<img id="nft-image" />
 			</p>
+      <p>
+        <div id="nft-iframe-wrapper">
+				<iframe id="nft-iframe"></iframe>
+        </div>
+			</p>
 			<p><audio id="nft-sound" controls autoplay></audio></p>
 		</div>
 		<script>
@@ -68,7 +73,10 @@
 			const description = document.getElementById('nft-description');
 			const img = document.getElementById('nft-image');
 			const sound = document.getElementById('nft-sound');
+      const iframeWrapper = document.getElementById('nft-iframe-wrapper');
+			const iframe = document.getElementById('nft-iframe');
 			sound.style.display = 'none';
+      iframeWrapper.style.display = 'none';
 			function refresh() {
 				const hashStr = location.hash && location.hash.slice(1);
 				if (hashStr) {
@@ -128,6 +136,9 @@
 							return response.json();
 						})
 						.then((json) => {
+							console.log({
+								json
+							});
 							if (json.name) {
 								title.innerHTML = json.name;
 							}
@@ -136,7 +147,9 @@
 							}
 							if (json.image) {
 								if (json.image !== img.src) {
+                  img.style.display = 'none'
 									img.src = json.image;
+                  img.onload = () => img.style.display = 'block';
 								}
 							}
 							if (json.animation_url) {
@@ -145,8 +158,13 @@
 										sound.style.display = 'inline-block';
 										sound.src = json.animation_url;
 									}
+								} else if (json.animation_url.startsWith('data:text/html')) {
+									if (json.animation_url !== iframe.src) {
+										iframeWrapper.style.display = 'inline-block';
+										iframe.src = json.animation_url;
+									}
 								} else {
-									// TODO
+									// TODO ?
 								}
 							}
 						})

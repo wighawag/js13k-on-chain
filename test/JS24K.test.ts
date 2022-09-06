@@ -1,12 +1,12 @@
 import {expect} from './chai-setup';
 import {ethers, deployments, getUnnamedAccounts} from 'hardhat';
 import {setupUsers} from './utils/users';
-import {BleepsDemo} from '../typechain';
+import {JS24K} from '../typechain';
 
 const setup = deployments.createFixture(async () => {
-	await deployments.fixture('BleepsDemo');
+	await deployments.fixture('JS24K');
 	const contracts = {
-		BleepsDemo: <BleepsDemo>await ethers.getContract('BleepsDemo')
+		JS24K: <JS24K>await ethers.getContract('JS24K')
 	};
 	const users = await setupUsers(await getUnnamedAccounts(), contracts);
 	return {
@@ -15,7 +15,7 @@ const setup = deployments.createFixture(async () => {
 	};
 });
 
-describe('BleepsDemo', function () {
+describe('JS24K', function () {
 	it('works', async function () {
 		const state = await setup();
 		expect(state).to.be.not.null;

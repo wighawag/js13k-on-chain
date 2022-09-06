@@ -8,7 +8,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
 	const {deployer} = await getNamedAccounts();
 
-	await deploy('BleepsDemo', {
+	await deploy('JS24K', {
 		from: deployer,
 		args: [],
 		proxy: useProxy,
@@ -17,4 +17,4 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 	});
 };
 export default func;
-func.tags = ['BleepsDemo', 'BleepsDemo_deploy'];
+func.tags = ['JS24K', 'JS24K_deploy'];
