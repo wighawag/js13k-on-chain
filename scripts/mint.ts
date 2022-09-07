@@ -3,16 +3,7 @@
 import {ethers} from 'hardhat';
 import triska from '../games/triska.json';
 import {JS24K} from '../typechain';
-
-function toHex(str: string) {
-	const res = [];
-	const len = str.length;
-	for (let n = 0, l = len; n < l; n++) {
-		const hex = Number(str.charCodeAt(n)).toString(16);
-		res.push(hex);
-	}
-	return '0x' + res.join('');
-}
+import {toHex} from '../utils/bytes';
 
 async function main() {
 	const bytesLength = triska.data.length;
@@ -25,28 +16,32 @@ async function main() {
 	const tx = await JS24K.mint(gameDATA);
 	const receipt = await tx.wait();
 	console.log({gas: receipt.gasUsed.toNumber()});
-	const address = (receipt as any).events[0].args[2].toHexString();
+	console.log(JSON.stringify(receipt.logs, null, 2));
+	const address = ((receipt as any).events[1] || (receipt as any).events[0]).args[2].toHexString();
 	console.log({address});
 
-	if (address === '0x00') {
-		const tx = await JS24K.debug(gameDATA);
-		const receipt = await tx.wait();
-		console.log({gas: receipt.gasUsed.toNumber()});
-		console.log(JSON.stringify((receipt as any).events[0].args, null, 2));
+	if (address == '0x00') {
+		const tx2 = await JS24K.debug(gameDATA);
+		const receipt2 = await tx2.wait();
+		console.log({gas: receipt2.gasUsed.toNumber()});
+		console.log(JSON.stringify(receipt2.logs, null, 2));
 	}
 
-	if (address === '0x00') {
+	if (address == '0x00') {
 		const signers = await ethers.getUnnamedSigners();
 		try {
 			const data = '0x' + '615870600E6000396158706000F3' + gameDATA.slice(2);
-			console.log(JSON.stringify({data}, null, 2));
+			// console.log(JSON.stringify({data}, null, 2));
 			const tx = await signers[0].sendTransaction({
 				// to: signers[1].address,
 				// value: 1
 				data
 			});
 			const receipt = await tx.wait();
-			console.log({gasUsed: receipt.gasUsed.toNumber(), contractAddress: receipt.contractAddress});
+			console.log('FAILED, fallback on manual', {
+				gasUsed: receipt.gasUsed.toNumber(),
+				contractAddress: receipt.contractAddress
+			});
 		} catch (err) {
 			console.error(err);
 		}
