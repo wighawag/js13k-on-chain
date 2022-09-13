@@ -23,10 +23,11 @@ const config: HardhatUserConfig = {
 		]
 	},
 	namedAccounts: {
-		deployer: 0,
+		deployer: 0
 	},
 	networks: addForkConfiguration({
 		hardhat: {
+			gas: 'auto',
 			initialBaseFeePerGas: 0 // to fix : https://github.com/sc-forks/solidity-coverage/issues/652, see https://github.com/sc-forks/solidity-coverage/issues/652#issuecomment-896330136
 		},
 		localhost: {
