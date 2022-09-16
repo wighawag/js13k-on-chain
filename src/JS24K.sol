@@ -129,8 +129,8 @@ contract JS24K {
 			calldatacopy(add(p, 0x0B), 68, len)
 
 			newContract := create(0, p, add(len, 0x0B))
-			log2(p, add(len, 11), len, newContract) // need this line, no idea why, looks like some memory management issues
 		}
+		require(newContract != 0, "CREATE_FAILS");
 		ownerOf[newContract] = msg.sender;
 		emit Transfer(address(0), msg.sender, newContract);
 	}
