@@ -21,10 +21,10 @@ async function main() {
 	console.log({address});
 
 	if (address == '0x00') {
-		const tx2 = await JS24K.debug(gameDATA);
-		const receipt2 = await tx2.wait();
-		console.log({gas: receipt2.gasUsed.toNumber()});
-		console.log(JSON.stringify(receipt2.logs, null, 2));
+		// const tx2 = await JS24K.debug(gameDATA);
+		// const receipt2 = await tx2.wait();
+		// console.log({gas: receipt2.gasUsed.toNumber()});
+		// console.log(JSON.stringify(receipt2.logs, null, 2));
 	}
 
 	if (address == '0x00') {
