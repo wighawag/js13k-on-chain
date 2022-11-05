@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-1.0
-pragma solidity 0.8.13;
+pragma solidity 0.8.16;
 
 import "@openzeppelin/contracts/utils/Strings.sol";
 

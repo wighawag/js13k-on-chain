@@ -22,4 +22,3 @@ deployments/localhost
 /.dapp
 tmp/
 *.log
-log.txt

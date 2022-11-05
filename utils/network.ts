@@ -78,17 +78,22 @@ export function addForkConfiguration(networks: NetworksUserConfig): NetworksUser
 				forking: forkURL
 					? {
 							url: forkURL,
-							blockNumber: process.env.HARDHAT_FORK_NUMBER ? parseInt(process.env.HARDHAT_FORK_NUMBER) : undefined
+							blockNumber: process.env.HARDHAT_FORK_NUMBER
+								? parseInt(process.env.HARDHAT_FORK_NUMBER)
+								: undefined,
 					  }
 					: undefined,
 				mining: process.env.MINING_INTERVAL
 					? {
 							auto: false,
-							interval: process.env.MINING_INTERVAL.split(',').map((v) => parseInt(v)) as [number, number]
+							interval: process.env.MINING_INTERVAL.split(',').map((v) => parseInt(v)) as [
+								number,
+								number
+							],
 					  }
-					: undefined
-			}
-		}
+					: undefined,
+			},
+		},
 	};
 	return newNetworks;
 }
