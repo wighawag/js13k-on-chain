@@ -6,12 +6,16 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 	const {deploy} = deployments;
 	const useProxy = !hre.network.live;
 
-	const {deployer} = await getNamedAccounts();
+	const {deployer, collectionOwner} = await getNamedAccounts();
 
 	await deploy('JS24K', {
 		from: deployer,
-		args: [],
-		proxy: useProxy,
+		args: [collectionOwner],
+		proxy: useProxy
+			? {
+					proxyContract: 'OptimizedTransparentProxy',
+			  }
+			: false,
 		log: true,
 		autoMine: true, // speed up deployment on local network (ganache, hardhat), no effect on live networks
 	});

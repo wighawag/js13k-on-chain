@@ -24,26 +24,9 @@
 				width: 30%;
 				height: auto;
 			}
-
-			@media only screen and (max-width: 1000px) {
-				#nft-image {
-					width: 60%;
-					height: auto;
-				}
-			}
-
-			@media only screen and (max-width: 600px) {
-				#nft-image {
-					width: 90%;
-					height: auto;
-				}
-			}
-
-			@media only screen and (max-width: 400px) {
-				#nft-image {
-					width: 100%;
-					height: auto;
-				}
+      #nft-iframe {
+				width: 80%;
+        height: 60%;
 			}
 		</style>
 	</head>
@@ -52,13 +35,14 @@
 			<h1 id="nft-title">Loading...</h1>
 			<p id="nft-description"></p>
 			<p>
-				<img id="nft-image" />
-			</p>
-      <p>
         <div id="nft-iframe-wrapper">
 				<iframe id="nft-iframe"></iframe>
         </div>
 			</p>
+      <p>
+				<img id="nft-image" />
+			</p>
+      
 			<p><audio id="nft-sound" controls autoplay></audio></p>
 		</div>
 		<script>
@@ -277,7 +261,7 @@
                 }
               } else if (json.animation_url.startsWith('data:text/html')) {
                 if (json.animation_url !== iframe.src) {
-                  iframeWrapper.style.display = 'inline-block';
+                  iframeWrapper.style.display = 'block';
                   iframe.src = json.animation_url;
                 }
               } else {
