@@ -14,12 +14,12 @@ const gameDATA = toHex(triska.data);
 const setup = deployments.createFixture(async () => {
 	await deployments.fixture('JS24K');
 	const contracts = {
-		JS24K: <JS24K>await ethers.getContract('JS24K')
+		JS24K: <JS24K>await ethers.getContract('JS24K'),
 	};
 	const users = await setupUsers(await getUnnamedAccounts(), contracts);
 	return {
 		...contracts,
-		users
+		users,
 	};
 });
 

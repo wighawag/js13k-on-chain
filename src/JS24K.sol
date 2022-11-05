@@ -2,7 +2,7 @@
 pragma solidity 0.8.16;
 
 import "@openzeppelin/contracts/utils/Strings.sol";
-
+import "base64-sol/base64.sol";
 import "hardhat/console.sol";
 
 contract JS24K {
@@ -178,12 +178,12 @@ contract JS24K {
 					"https://JS24Kgames.com/entries/",
 					bytes(gameId),
 					'","image":"',
-					"<svg%2520viewBox='0%25200%252032%252016'xmlns='http://www.w3.org/2000/svg'><text%2520x='50%'y='50%'dominant-baseline='middle'text-anchor='middle'style='fill:rgb(219,39,119);font-size:12px;'>",
+					"data:image/svg+xml,<svg%2520viewBox='0%25200%252032%252016'xmlns='http://www.w3.org/2000/svg'><text%2520x='50%'y='50%'dominant-baseline='middle'text-anchor='middle'style='fill:rgb(219,39,119);font-size:12px;'>",
 					bytes(gameName),
 					"</text></svg>"
 					'",',
 					'"animation_url":"data:text/html;base64,',
-					gameData,
+					bytes(Base64.encode(gameData)),
 					'"}'
 				)
 			);

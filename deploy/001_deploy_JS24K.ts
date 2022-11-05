@@ -13,7 +13,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 		args: [],
 		proxy: useProxy,
 		log: true,
-		autoMine: true // speed up deployment on local network (ganache, hardhat), no effect on live networks
+		autoMine: true, // speed up deployment on local network (ganache, hardhat), no effect on live networks
 	});
 };
 export default func;

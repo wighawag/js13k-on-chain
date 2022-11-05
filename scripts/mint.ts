@@ -1,16 +1,14 @@
 // Triska game was minified using https://jsminify.org/ and an html minifier and css minifier
 // encode to uri : https://base64.guru/converter/encode/html
 import {ethers} from 'hardhat';
-import triska from '../games/triska.json';
 import {JS24K} from '../typechain';
-import {toHex} from '../utils/bytes';
+import fs from 'fs';
 
 async function main() {
-	const bytesLength = triska.data.length;
-	const gameDATA = toHex(triska.data);
+	const args = process.argv.slice(2);
+	const gameDATA = '0x' + fs.readFileSync(args[0]).toString('hex');
 	console.log({
-		bytesLength,
-		gameDATALength: gameDATA.length
+		numBytes: (gameDATA.length - 2) / 2,
 	});
 	const JS24K = await ethers.getContract<JS24K>('JS24K');
 	const tx = await JS24K.mint(gameDATA);
@@ -35,12 +33,12 @@ async function main() {
 			const tx = await signers[0].sendTransaction({
 				// to: signers[1].address,
 				// value: 1
-				data
+				data,
 			});
 			const receipt = await tx.wait();
 			console.log('FAILED, fallback on manual', {
 				gasUsed: receipt.gasUsed.toNumber(),
-				contractAddress: receipt.contractAddress
+				contractAddress: receipt.contractAddress,
 			});
 		} catch (err) {
 			console.error(err);

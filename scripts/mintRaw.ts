@@ -1,8 +1,8 @@
 // Triska game was minified using https://jsminify.org/ and an html minifier and css minifier
 // encode to uri : https://base64.guru/converter/encode/html
 import {ethers} from 'hardhat';
-import triska from '../games/triska.json';
 import {JS24K} from '../typechain';
+import fs from 'fs';
 
 function toHex(str: string) {
 	const res = [];
@@ -15,7 +15,10 @@ function toHex(str: string) {
 }
 
 async function main() {
-	const gameDATA = toHex(triska.data);
+	const args = process.argv.slice(2);
+	const game = fs.readFileSync(args[0], {encoding: 'utf-8'});
+	const gameDATA = toHex(game);
+
 	const data = '0x' + '615870600E6000396158706000F3' + gameDATA.slice(2);
 	const JS24K = await ethers.getContract<JS24K>('JS24K');
 	const tx = await JS24K.mintRaw(data);
