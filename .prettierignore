@@ -1,14 +1,16 @@
-export/
-deployments/
-artifacts/
-cache/
-coverage/
+# ###########################################
+# .gitignore
+#############################################
+# environment variables
+.env*.local
+
+# node modules
 node_modules/
+#############################################
+
+# Ignore npm files
+pnpm-lock.yaml
 package.json
-typechain/
-_lib/
-.dappp
-*.json
-.yalc
-tmp/
-games/*.html
+
+# ignore folders
+**/

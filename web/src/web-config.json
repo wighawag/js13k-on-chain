@@ -1,0 +1,17 @@
+{
+	"name": "Js13k On Chain",
+	"title": "Js13k On Chain - Template for Decentralised Applications.",
+	"description": "Build and Deploy for Eternity. Js13k On Chain is a production-ready template for decentralised applications.",
+	"canonicalURL": "https://js13k-on-chain.eth.limo",
+	"ENSName": "js13k-on-chain.eth",
+	"themeColor": "#000000",
+	"appleStatusBarStyle": "black-translucent",
+	"icon": "static/icon.svg",
+	"maskableIcons": [
+		{
+			"src": "../maskable_icon_512x512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	]
+}

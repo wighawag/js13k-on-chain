@@ -1,0 +1,12 @@
+node_modules
+cache
+artifacts
+.vscode/*
+!*.default
+generated
+deployments/localhost
+
+*.local
+
+coverage
+coverage.json
