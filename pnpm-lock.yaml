@@ -35,6 +35,9 @@ importers:
       '@nomicfoundation/hardhat-network-helpers':
         specifier: ^1.0.8
         version: 1.0.8(hardhat@2.14.1)
+      '@openzeppelin/contracts':
+        specifier: ^4.9.1
+        version: 4.9.1
       '@types/chai':
         specifier: ^4.3.5
         version: 4.3.5
@@ -44,6 +47,9 @@ importers:
       as-soon:
         specifier: ^0.0.4
         version: 0.0.4
+      base64-sol:
+        specifier: ^1.1.0
+        version: 1.1.0
       chai:
         specifier: ^4.3.7
         version: 4.3.7
@@ -51,8 +57,8 @@ importers:
         specifier: ^2.14.1
         version: 2.14.1(ts-node@10.9.1)(typescript@5.0.4)
       hardhat-rocketh:
-        specifier: ^0.5.6
-        version: 0.5.6(rocketh@0.5.2)
+        specifier: ^0.5.7
+        version: 0.5.7(rocketh@0.5.2)
       ldenv:
         specifier: ^0.3.5
         version: 0.3.5
@@ -77,6 +83,9 @@ importers:
       solidity-coverage:
         specifier: ^0.8.2
         version: 0.8.2(hardhat@2.14.1)
+      solidity-kit:
+        specifier: ^0.2.9
+        version: 0.2.9
       solidity-proxy:
         specifier: ^0.0.0
         version: 0.0.0
@@ -1178,6 +1187,10 @@ packages:
       '@nomicfoundation/solidity-analyzer-win32-x64-msvc': 0.1.1
     dev: true
 
+  /@openzeppelin/contracts@4.9.1:
+    resolution: {integrity: sha512-aLDTLu/If1qYIFW5g4ZibuQaUsFGWQPBq1mZKp/txaebUnGHDmmiBhRLY1tDNedN0m+fJtKZ1zAODS9Yk+V6uA==}
+    dev: true
+
   /@parcel/watcher@2.1.0:
     resolution: {integrity: sha512-8s8yYjd19pDSsBpbkOHnT6Z2+UJSuLQx61pCFM0s5wSRvKCEMDjd/cHY3/GI1szHIWbpXpsJdg3V6ISGGx9xDw==}
     engines: {node: '>= 10.0.0'}
@@ -1902,6 +1915,10 @@ packages:
 
   /base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
+    dev: true
+
+  /base64-sol@1.1.0:
+    resolution: {integrity: sha512-mksLxtFyBcXd3LYK5UxyMj29YR//zoaeXpJaKRbnLQC0E99oCJl7VpKaJDXWAuTvnhxBU9XNYzhxSL8umsrxWg==}
     dev: true
 
   /basic-auth@2.0.1:
@@ -3880,8 +3897,8 @@ packages:
       har-schema: 2.0.0
     dev: true
 
-  /hardhat-rocketh@0.5.6(rocketh@0.5.2):
-    resolution: {integrity: sha512-R95Kk9XyGjCLNRLJb5LD88sRN4i5Xm13jQrUcQvqWtEOVBL87R8Fv1vEw2CnGoBTCyTGURaj5tRcrp1mRp1GYw==}
+  /hardhat-rocketh@0.5.7(rocketh@0.5.2):
+    resolution: {integrity: sha512-DyZnqKTYPbCGW6RX6ZSltFwu5wd7o0zpUOqS2v6d/7JE7AYhPBO7lHfyK2K/0cTXvnIKs9Z6XPgoHIQAviA+Eg==}
     hasBin: true
     peerDependencies:
       rocketh: 0.5.2
@@ -7017,6 +7034,10 @@ packages:
       web3-utils: 1.10.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /solidity-kit@0.2.9:
+    resolution: {integrity: sha512-dhV9IdFahZvdqBIkpWOUfnPB11uhayxl1/VO0v/M8aFFUmxtpu1OiSRX0U5vlSq/TUVNtJt9xb4j6sFSXFxCMQ==}
     dev: true
 
   /solidity-proxy@0.0.0:

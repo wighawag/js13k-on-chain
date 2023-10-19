@@ -11,6 +11,7 @@ export const context = {
 			default: 0,
 			sepolia: '0x61c461EcC993aaDEB7e4b47E96d1B8cC37314B20',
 		},
+		collectionOwner: "deployer"
 	},
 	artifacts,
 } as const;
